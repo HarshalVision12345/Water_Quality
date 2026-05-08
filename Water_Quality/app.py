@@ -4,7 +4,7 @@ import requests
 import numpy as np 
 import pandas as pd 
 
-water_img = Image.open(r"C:\Users\HARSHAL\Downloads\Gemini_Generated_Image_plw2juplw2juplw2.png")
+water_img = Image.open(r"https://github.com/HarshalVision12345/Water_Quality/blob/master/Water_Quality/Gemini_Generated_Image_plw2juplw2juplw2.png")
 st.image(water_img)
 
 # USER INPUT FORM ---------------------> 
@@ -46,7 +46,8 @@ input_data = {
 
 if st.button("Predict Water Potability"):
     try:
-        response = requests.post("http://127.0.0.1:8000/Predict", json=input_data)
+            
+        response = requests.post("https://your-app-name.onrender.com/Predict", json=input_data)
 
         if response.status_code == 200 :
             result = response.json()
