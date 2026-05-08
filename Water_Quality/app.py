@@ -3,8 +3,13 @@ from PIL import Image
 import requests
 import numpy as np 
 import pandas as pd 
+from io import BytesIO
 
-water_img = Image.open(r"https://github.com/HarshalVision12345/Water_Quality/blob/master/Water_Quality/Gemini_Generated_Image_plw2juplw2juplw2.png")
+url = "https://raw.githubusercontent.com/HarshalVision12345/Water_Quality/master/Water_Quality/Gemini_Generated_Image_plw2juplw2juplw2.png"
+
+response = requests.get(url)
+
+water_img = Image.open(BytesIO(response.content))
 st.image(water_img)
 
 # USER INPUT FORM ---------------------> 
@@ -47,7 +52,8 @@ input_data = {
 if st.button("Predict Water Potability"):
     try:
             
-        response = requests.post("https://your-app-name.onrender.com/Predict", json=input_data)
+ 
+        response = requests.post("https://water-quality-api-u3fx.onrender.com/Predict", json=input_data)
 
         if response.status_code == 200 :
             result = response.json()
